@@ -6,8 +6,15 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 //다크모드, 라이트모드 지원
-private val DarkColorScheme = darkColorScheme()
-private val LightColorScheme = lightColorScheme()
+private val DarkColorScheme = darkColorScheme(
+    background = DarkBackground,
+    surface = DarkSurface,
+)
+
+private val LightColorScheme = lightColorScheme(
+    background = LightBackground,
+    surface = LightSurface,
+)
 
 @Composable
 fun MyTodoTheme(

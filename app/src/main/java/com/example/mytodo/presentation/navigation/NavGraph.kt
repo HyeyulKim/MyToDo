@@ -27,8 +27,9 @@ fun TodoNavGraph(navController: NavHostController) {
                 onTodoClick = { todo ->
                     navController.navigate(Screen.TodoDetail.createRoute(todo.id))
                 },
-                onAddTodoClick = {
-                    navController.navigate(Screen.AddTodo.route)
+                onAddTodoClick = { navController.navigate(Screen.AddTodo.route) },
+                onCheckedChange = { todo, isChecked ->
+                    viewModel.updateTodo(todo.copy(isDone = isChecked))
                 }
             )
         }

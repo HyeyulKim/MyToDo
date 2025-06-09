@@ -25,7 +25,7 @@ object AppModule {
             TodoDatabase::class.java,
             "todo_db"
         )
-            .addMigrations(TodoDatabase.MIGRATION_1_2) // ✅ Migration 추가
+            .addMigrations(TodoDatabase.MIGRATION_1_2) // Migration 추가
             .build()
     }
 
