@@ -9,7 +9,7 @@ import com.example.mytodo.data.local.entity.TodoEntity
 //DB 버전 관리(MIGRATION 추가)
 @Database(
     entities = [TodoEntity::class],
-    version = 2, // ✅ 기존 1 → 2로 올림
+    version = 2, // 기존 1 → 2로 올림
     exportSchema = false
 )
 abstract class TodoDatabase : RoomDatabase() {

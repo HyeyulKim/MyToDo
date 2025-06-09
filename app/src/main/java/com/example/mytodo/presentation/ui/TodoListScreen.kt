@@ -22,6 +22,7 @@ import com.example.mytodo.presentation.ui.components.ErrorItem
 fun TodoListScreen(
     viewModel: TodoViewModel,
     onTodoClick: (Todo) -> Unit,
+    onCheckedChange: (Todo, Boolean) -> Unit,
     onAddTodoClick: () -> Unit
 ) {
     val todoPagingItems = viewModel.todoPagingItems.collectAsLazyPagingItems()
@@ -39,6 +40,9 @@ fun TodoListScreen(
         TodoListContent(
             todos = todoPagingItems,
             onTodoClick = onTodoClick,
+            onCheckedChange = { todo, isChecked ->
+                viewModel.updateTodo(todo.copy(isDone = isChecked))
+            },
             modifier = Modifier.padding(paddingValues)
         )
     }
@@ -48,6 +52,7 @@ fun TodoListScreen(
 fun TodoListContent(
     todos: LazyPagingItems<Todo>,
     onTodoClick: (Todo) -> Unit,
+    onCheckedChange: (Todo, Boolean) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(
@@ -56,7 +61,13 @@ fun TodoListContent(
     ) {
         items(todos.itemCount) { index ->
             todos[index]?.let { todo ->
-                TodoItem(todo = todo, onClick = { onTodoClick(todo) })
+                TodoItem(
+                    todo = todo,
+                    onClick = { onTodoClick(todo) },
+                    onCheckedChange = { isChecked ->
+                        onCheckedChange(todo, isChecked)
+                    }
+                )
             }
         }
 

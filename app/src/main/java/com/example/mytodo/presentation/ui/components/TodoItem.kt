@@ -16,23 +16,24 @@ import com.example.mytodo.domain.model.Todo
 fun TodoItem(
     todo: Todo,
     onClick: () -> Unit,
+    onCheckedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = 4.dp)
-            .clickable { onClick() },
+            .padding(vertical = 4.dp),
         elevation = CardDefaults.cardElevation(4.dp)
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .clickable { onClick() }
                 .padding(16.dp)
         ) {
             Checkbox(
                 checked = todo.isDone,
-                onCheckedChange = null // 상세화면에서 처리
+                onCheckedChange = { isChecked -> onCheckedChange(isChecked)}
             )
             Spacer(modifier = Modifier.width(8.dp))
             Column {
