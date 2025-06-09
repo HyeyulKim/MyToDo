@@ -8,6 +8,7 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.mytodo.domain.model.Todo
@@ -23,17 +24,18 @@ fun TodoItem(
         modifier = modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp),
-        elevation = CardDefaults.cardElevation(4.dp)
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable { onClick() }
-                .padding(16.dp)
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically  // Checkbox와 Text 수직정렬
         ) {
             Checkbox(
                 checked = todo.isDone,
-                onCheckedChange = { isChecked -> onCheckedChange(isChecked)}
+                onCheckedChange = { isChecked -> onCheckedChange(isChecked)},
+                modifier = Modifier.size(24.dp)
             )
             Spacer(modifier = Modifier.width(8.dp))
             Column {
